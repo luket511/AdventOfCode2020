@@ -1,5 +1,7 @@
 import csv
 
+NEWLINECHAR = "---NEWLINE---"
+
 ## USELESS split() method already exists for strings
 # def split(inpString,breakChar):
 #     output = []
@@ -20,5 +22,8 @@ def reader(inputFile):
     with open(inputFile) as file:
         reader = csv.reader(file,delimiter=',')
         for row in reader:
-            output.append(row[0])
+            try:
+                output.append(row[0])
+            except IndexError:
+                output.append(NEWLINECHAR)
     return output

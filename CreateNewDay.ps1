@@ -15,5 +15,5 @@ if __name__ == "__main__":
     pass
 "@
 
-Write-Output $template > ".\Day_${day}a.py"
-Write-Output $template > ".\Day_${day}b.py"
+Write-Output $template | Out-File ".\Day_${day}a.py" -Encoding utf8
+Write-Output $template | Out-File ".\Day_${day}b.py" -Encoding utf8

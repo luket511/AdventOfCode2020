@@ -12,7 +12,7 @@ class Bag():
 
     def findTopBags(self):
         if self.isContainedIn() == []:
-            return set().union({self.colour})
+            return {self.colour}
         else:
             try:
                 output = {self.colour}

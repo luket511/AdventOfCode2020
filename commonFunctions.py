@@ -19,6 +19,12 @@ TUPLE = type(())
 #         output.append(currentString)
 #     return output
 
+def listFlatten(inpList):
+    if not isList(inpList):
+        return [isList] + listFlatten(inpList[1:])
+    else:
+        return listFlatten(inpList)
+
 def isTuple(inp):
     return type(inp) == TUPLE
 

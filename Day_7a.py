@@ -1,6 +1,6 @@
-﻿from commonFunctions import reader, merge, isTuple, isList
+﻿from commonFunctions import reader, flatten
 import re
-INPUT = "input7test.csv"
+INPUT = "input7.csv"
 
 
 
@@ -10,14 +10,21 @@ class Bag():
         self.contains = canContain
         self.isContainedBy = isContainedIn
 
+
+    def findBagsIncludedIn(self):
+        output = flatten(self.findTopBags())
+        output.remove(self.colour)
+        output = set(output)
+        return output
+
     def findTopBags(self):
         if self.isContainedIn() == []:
-            return {self.colour}
+            return self.colour
         else:
             try:
-                output = {self.colour}
+                output = [self.colour]
                 for bag in self.isContainedIn():
-                    output.union({bag.findTopBags()})
+                    output.append(bag.findTopBags())
                 return output
             except TypeError:
                 print (output,self.colour)
@@ -37,11 +44,10 @@ class Bag():
     def __str__(self):
         return "Bag containing {0}, contained in {1}".format(self.coloursContained(), self.isContainedIn())
 
-if __name__ == "__main__":
+def generateBagStructure(file,bagType=Bag):
     rules = {}
-    for rule in reader(INPUT):
+    for rule in reader(file):
         ruleSplit = rule.split("contain")
-        # print (ruleSplit)
         head = ruleSplit[0]
         head = head.split()
         head = "{0} {1}".format(head[0],head[1])
@@ -56,20 +62,18 @@ if __name__ == "__main__":
                 colour = descriptor[1] + " " + descriptor[2]
                 body.append((num,colour))
         
-        # print (body)
-        
         rules[head] = (body,[])
-        
-    # print (rules)
 
     for key in rules.keys():
-        rules[key] = Bag(key,rules[key][0],rules[key][1])
+        rules[key] = bagType(key,rules[key][0],rules[key][1])
         for colour in rules[key].coloursContained():
             try:
                 rules[colour].addNewContainer(rules[key])
             except AttributeError:
                 rules[colour][1].append(rules[key])
 
-    print (rules["shiny gold"].findTopBags())
+    return rules
 
-    print (rules["light red"].findTopBags())
+if __name__ == "__main__":
+    rules = generateBagStructure(INPUT)
+    print (len(rules["shiny gold"].findBagsIncludedIn()))

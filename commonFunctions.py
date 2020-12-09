@@ -19,12 +19,13 @@ TUPLE = type(())
 #         output.append(currentString)
 #     return output
 
-def listFlatten(inpList):
-    if not isList(inpList):
-        return [isList] + listFlatten(inpList[1:])
-    else:
-        return listFlatten(inpList)
-
+def flatten(S):
+    if S == []:
+        return S
+    if isinstance(S[0], list):
+        return flatten(S[0]) + flatten(S[1:])
+    return S[:1] + flatten(S[1:])
+        
 def isTuple(inp):
     return type(inp) == TUPLE
 

@@ -1,6 +1,6 @@
 ﻿from commonFunctions import reader, flatten
 from Day_7a import Bag, generateBagStructure
-INPUT = "input7.csv"
+INPUT = "input7test2.csv"
 
 class AdvancedBag(Bag):
     def __init__(self,colour,canContain,isContainedIn):

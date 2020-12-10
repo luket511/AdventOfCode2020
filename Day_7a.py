@@ -1,4 +1,4 @@
-﻿from commonFunctions import reader, flatten
+﻿from commonFunctions import reader, flatten, removeDuplicates
 import re
 INPUT = "input7.csv"
 
@@ -12,9 +12,8 @@ class Bag():
 
 
     def findBagsIncludedIn(self):
-        output = flatten(self.findTopBags())
+        output = removeDuplicates(flatten(self.findTopBags()))
         output.remove(self.colour)
-        output = set(output)
         return output
 
     def findTopBags(self):
@@ -76,4 +75,4 @@ def generateBagStructure(file,bagType=Bag):
 
 if __name__ == "__main__":
     rules = generateBagStructure(INPUT)
-    print (len(rules["shiny gold"].findBagsIncludedIn()))
+    print ((rules["shiny gold"].findBagsIncludedIn()))

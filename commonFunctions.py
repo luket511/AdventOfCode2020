@@ -19,6 +19,14 @@ TUPLE = type(())
 #         output.append(currentString)
 #     return output
 
+def removeDuplicates(inpList):
+    if isList(inpList):
+        s = set(inpList)
+        return list(s)
+    else:
+        raise TypeError
+
+#https://stackoverflow.com/questions/12472338/flattening-a-list-recursively
 def flatten(S):
     if S == []:
         return S

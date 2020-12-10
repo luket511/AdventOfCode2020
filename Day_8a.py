@@ -35,19 +35,24 @@ class InstructionProcessor():
         return {}
 
     def next(self):
-        if self.getPC() in self.visited:
-            print("Final Acc Value: {0}, Duplicate Visited:{1}".format(self.getAcc(),self.getPC()))
+        if self.getPC()+1 in self.visited:
+            print("Final Acc Value: {0}, Duplicate Visited:{1}".format(self.getAcc(),self.getPC()+1))
             return False
         else:
-            self.visited.append(self.getPC())
+            self.visited.append(self.getPC()+1)
             instruction = self.program[self.getPC()]
             instruction[0](instruction[1])
             return True
 
     def nextDebug(self):
-        print ("PC:{0}, ACC:{1}, Next Instruction:{2}".format(self.getPC(),self.getAcc(),self.program[self.getPC()]))
+        print ("PC:{0}, ACC:{1}, Next Instruction:{2}".format(self.getPC()+1,self.getAcc(),self.getInstruction(self.getPC())))
         input("")
         return self.next()
+
+    def getInstruction(self,index):
+        map = {self.acc:"acc",self.jmp:"jmp",self.nop:"nop"}
+        instruction = self.program[index]
+        return (map[instruction[0]],instruction[1])
 
 if __name__ == "__main__":
     ip = InstructionProcessor(reader(INPUT))

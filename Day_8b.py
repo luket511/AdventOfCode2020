@@ -1,5 +1,6 @@
 ﻿from commonFunctions import reader
 from Day_8a import InstructionProcessor
+from time import time
 INPUT = "input8.csv"
 
 class CompletedInstructionProcessor(InstructionProcessor):
@@ -28,6 +29,7 @@ class CompletedInstructionProcessor(InstructionProcessor):
 
 
 if __name__ == "__main__":
+    t1 = time()
     instructionSet = reader(INPUT)
 
     for i in range(len(reader(INPUT))):
@@ -55,3 +57,7 @@ if __name__ == "__main__":
             break
 
         instructionSet = reader(INPUT)
+     
+    t2 = time()
+    t = t2 - t1
+    print ("Time Elapsed: {0}".format(t))

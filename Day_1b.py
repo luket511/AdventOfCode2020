@@ -18,6 +18,6 @@ def findMatchingTrips(target,inputList):
             return pairList 
 
 if __name__ == "__main__":
-    solutionList = bruteForceTrips(2020,Input.LIST)
+    solutionList = bruteForceTrips(2020,Input1.LIST)
     # solutionList = findMatchingTrips(2020,Input.LIST)
     print (solutionList)

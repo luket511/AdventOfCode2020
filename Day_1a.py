@@ -15,5 +15,5 @@ def findMatchingPairs(target,inputList):
 
 if __name__ == "__main__":
     # solutionList = bruteForcePairs(2020,Input.LIST)
-    solutionList = findMatchingPairs(2020,Input.LIST)
+    solutionList = findMatchingPairs(2020,Input1.LIST)
     print (solutionList)

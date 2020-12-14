@@ -57,3 +57,58 @@ def reader(inputFile):
             except IndexError:
                 output.append(NEWLINECHAR)
     return output
+
+def findMax(inpList): #Takes input list of integers and returns largest item in list
+    output = 0
+    for i in inpList:
+        if i > output:
+            output = i
+    return output
+
+
+class Node():
+    def __init__(self,value,parentNodes):
+        self.value = value
+        self.children = []
+        for node in parentNodes:
+            node.addChildNode(self)
+
+    def getValue(self):
+        return self.value
+
+    def getChildNodes(self):
+        return self.children
+
+    def addChildNode(self,node):
+        self.children.append(node)
+    
+    def hasChildren(self):
+        return len(self.children) != 0
+
+    def hasNoChildren(self):
+        return not self.hasChildren()
+
+    def getNumberOfChildren(self):
+        return len(self.children)
+
+    def __str__(self):
+        return ("(Node {0}:{1})".format(self.value,self.children))
+
+
+#Takes input of the form {key,([parentNodes],[childNodes])} and returns a dictionary of the type {key, Node} where Node is linked to parents
+def generateStructure(nodeMap):
+    for key in nodeMap.keys():
+        nodeVal = key
+        nodeChildren = nodeMap[key][1]
+        nodeParents = nodeMap[key][0]
+        nodeMap[key] = Node(nodeVal,nodeParents)
+        for child in nodeChildren:
+            if isTuple(nodeMap[child]):
+                nodeMap[child][0].append(nodeMap[key])
+            else:
+                nodeMap[key].addChildNode(nodeMap[child])
+    return nodeMap
+
+def printDict(inpDict):
+    for key in inpDict.keys():
+        print ("{0}:{1}".format(key,inpDict[key]))

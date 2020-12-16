@@ -1,4 +1,5 @@
 import unittest
+from commonFunctions import reader
 
 # py unitTests.py -v
 
@@ -21,6 +22,15 @@ class AdventOfCodeUnitTests(unittest.TestCase):
         
         from Day_2b import checkPasswords
         self.assertEqual(checkPasswords("Input2test.csv"),1)
+
+    def test_day_eleven(self):
+        from Day_11a import Layout
+        l1 = Layout(reader("input11test.csv"))
+        self.assertEqual(l1.getFinalNumberOccupied(), 37)
+
+        from Day_11b import AdvancedLayout
+        l2 = AdvancedLayout(reader("input11test.csv"))
+        self.assertEqual(l2.getFinalNumberOccupied(),26)
 
 if __name__ == '__main__':
     unittest.main()

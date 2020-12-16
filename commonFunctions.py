@@ -127,6 +127,20 @@ class Point():
     def setPos(self,x,y):
         self.__init__(x,y)
 
-    def move(self,x,y):
-        self.x += x
-        self.y += y
+    def moveCoords(self,x,y):
+        self.x += int(x)
+        self.y += int(y)
+
+    def movePoint(self,p):
+        self.x += p.x
+        self.y += p.y
+
+    def __str__(self):
+        return "({0},{1})".format(self.x,self.y)
+
+DIRECTION_MAP = {
+    0:"N",
+    90:"E",
+    180:"S",
+    270:"W"
+}

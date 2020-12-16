@@ -38,5 +38,10 @@ class AdventOfCodeUnitTests(unittest.TestCase):
         s1.navigate(reader("input12test.csv"))
         self.assertEqual(s1.getManhattenDistance(),25)
 
+        from Day_12b import BetterShip
+        s2 = BetterShip()
+        s2.navigate(reader("input12test.csv"))
+        self.assertEqual(s2.getManhattenDistance(),286)
+
 if __name__ == '__main__':
     unittest.main()

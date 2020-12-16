@@ -1,5 +1,5 @@
-﻿from commonFunctions import reader, Point
-INPUT = "input12test.csv"
+﻿from commonFunctions import reader, Point, DIRECTION_MAP
+INPUT = "input12.csv"
 
 class Ship():
     def __init__(self):
@@ -18,41 +18,46 @@ class Ship():
     def navigate(self,instructions):
         for instruction in instructions:
             operator = instruction[0]
-            operand = instruction[1:]
+            operand = int(instruction[1:])
             self.instructionSet[operator](operand)
 
     def moveNorth(self,distance):
-        self.pos.move(0,distance)
+        self.pos.moveCoords(0,distance)
 
     def moveSouth(self,distance):
-        self.pos.move(0,-distance)
+        self.pos.moveCoords(0,-distance)
 
     def moveEast(self,distance):
-        self.pos.move(distance,0)
+        self.pos.moveCoords(distance,0)
 
     def moveWest(self,distance):
-        self.pos.move(-distance,0)
+        self.pos.moveCoords(-distance,0)
 
     def moveForwards(self,distance):
-        pass
+        self.instructionSet[self.getDirection()](distance)
 
     def turnLeft(self,degrees):
-        self.direction = abs()
+        self.direction = (self.direction - degrees)%360
 
     def turnRight(self,degrees):
-        pass
+        self.direction = (self.direction + degrees)%360
 
     def reset(self):
         self.__init__()
 
     def getPosition(self):
-        pass
+        return self.pos
+
+    def getDegrees(self):
+        return self.direction
 
     def getDirection(self):
-        pass
+        return DIRECTION_MAP[self.direction]
 
     def getManhattenDistance(self):
-        pass
+        return abs(self.pos.y) + abs(self.pos.x)
 
 if __name__ == "__main__":
-    pass
+    s = Ship()
+    s.navigate(reader(INPUT))
+    print (s.getManhattenDistance())

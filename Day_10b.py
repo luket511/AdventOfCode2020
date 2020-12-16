@@ -1,6 +1,6 @@
 ﻿from commonFunctions import reader, generateStructure, printDict
 from Day_10a import formatInput
-INPUT = "input10test_b.csv"
+INPUT = "input10.csv"
 KNOWN_PATH_NUMBERS = {}
 
 
@@ -31,12 +31,5 @@ if __name__ == "__main__":
     nodeMap = {}
     for step in steps:
         nodeMap[step] = ([],getInRange(step,steps))
-    printDict(nodeMap)
-    print ("==========")
     nodeMap = generateStructure(nodeMap)
-    printDict(nodeMap)
-    print ("==========")
     print (findNumArrangements(nodeMap[0]))
-    print ("==========")
-    printDict(KNOWN_PATH_NUMBERS)
-    print ("==========")

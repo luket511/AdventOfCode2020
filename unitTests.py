@@ -32,5 +32,11 @@ class AdventOfCodeUnitTests(unittest.TestCase):
         l2 = AdvancedLayout(reader("input11test.csv"))
         self.assertEqual(l2.getFinalNumberOccupied(),26)
 
+    def test_day_twelve(self):
+        from Day_12a import Ship
+        s1 = Ship()
+        s1.navigate(reader("input12test.csv"))
+        self.assertEqual(s1.getManhattenDistance(),25)
+
 if __name__ == '__main__':
     unittest.main()

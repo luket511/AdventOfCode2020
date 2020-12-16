@@ -112,3 +112,21 @@ def generateStructure(nodeMap):
 def printDict(inpDict):
     for key in inpDict.keys():
         print ("{0}:{1}".format(key,inpDict[key]))
+
+class Point():
+    def __init__(self,x=0,y=0):
+        self.x = x
+        self.y = y
+
+    def equals(self,p):
+        return type(p) == type(self) and p.x == self.x and p.y == self.y
+
+    def getPos(self):
+        return "({0},{1})".format(self.x,self.y)
+
+    def setPos(self,x,y):
+        self.__init__(x,y)
+
+    def move(self,x,y):
+        self.x += x
+        self.y += y

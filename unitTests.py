@@ -43,5 +43,11 @@ class AdventOfCodeUnitTests(unittest.TestCase):
         s2.navigate(reader("input12test.csv"))
         self.assertEqual(s2.getManhattenDistance(),286)
 
+    def test_day_thirteen(self):
+        from Day_13a import getNextBus, formatInput
+        nextBusInfo = getNextBus(formatInput(reader("input13test.csv")))
+        self.assertEqual(nextBusInfo[0].getId(), 59)
+        self.assertEqual(nextBusInfo[1], 5)
+
 if __name__ == '__main__':
     unittest.main()

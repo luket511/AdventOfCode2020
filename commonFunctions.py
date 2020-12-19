@@ -28,7 +28,7 @@ def removeDuplicates(inpList):
     else:
         raise TypeError
 
-#https://stackoverflow.com/questions/12472338/flattening-a-list-recursively
+### https://stackoverflow.com/questions/12472338/flattening-a-list-recursively ###
 def flatten(S):
     if S == []:
         return S

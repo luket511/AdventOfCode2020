@@ -1,4 +1,4 @@
-﻿from commonFunctions import reader
+﻿from commonFunctions import reader, chinese_remainder
 from Day_13a import Bus
 INPUT = "input13.csv"
 
@@ -56,12 +56,18 @@ def checkTime(buses,time):
 
 if __name__ == "__main__":
     buses = formatInput(reader(INPUT))
-    buses = reformatBuses(buses,findLeastCommonBus)
-    increment = buses[findLeastCommonBus(buses)].id
-    print (increment)
-    counter = 0
-    while not checkTime(buses,counter):
-        counter += increment
-        print (counter)
-    print (counter + findSmallestOffset(buses))
+
+    a = []
+    n = []
+    for bus in buses:
+        a.append(-bus.offset)
+        n.append(bus.id)
+    print (chinese_remainder(n,a))
     
+    ## Is a theoretically working solution but takes to long and is practically not possible for the input13.csv data set
+    # buses = reformatBuses(buses,findLeastCommonBus)
+    # increment = buses[findLeastCommonBus(buses)].id
+    # counter = 0
+    # while not checkTime(buses,counter):
+    #     counter += increment
+    # print (counter + findSmallestOffset(buses))
